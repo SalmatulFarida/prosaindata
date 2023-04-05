@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; My sample book</title>
+    <title>Import Database &#8212; My sample book</title>
   
   
   
@@ -63,8 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'tugas 2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
-    <link rel="prev" title="Markdown Files" href="markdown.html" />
+    <link rel="prev" title="CRAWLING DATA" href="tugas%201.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -155,9 +154,14 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas%201.html">CRAWLING DATA</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Import Database</strong></a></li>
+
+
 </ul>
 
     </div>
@@ -341,7 +345,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Import Database</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -350,7 +354,10 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Import Database</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-database"><strong>Akses Database</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#get-data-dari-database">Get data dari Database</a></li>
 </ul>
 
             </nav>
@@ -363,779 +370,63 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>tugas 1</p>
-<p>#<strong>CRAWLING DATA</strong></p>
-<p>Data crawling merupakan proses dimana akan adanya  proses automatis untuk mengumpulkan dan mengindeks data dari berbagai sumber seperti situs web, database, atau dokumen. Proses ini menggunakan software atau aplikasi khusus yang disebut “crawler” untuk mengakses sumber data dan mengambil informasi yang dibutuhkan. Data yang dikumpulkan melalui crawling kemudian dapat diproses dan digunakan untuk berbagai tujuan, seperti analisis data, penelitian, atau pengembangan sistem informasi.</p>
-<p>Namun perlu digaris bawahi untuk pengambilan data melalui suatu situs web harus tetepa menggunakan etika dan aturan didalamnya, dikarenakan hal tersebut dapat melanggar hak cipta.</p>
-<p>##<strong>Import Library</strong></p>
-<p>List library yang digunakan :</p>
+  <p><strong># PIPELINES</strong></p>
+<div class="section" id="import-database">
+<h1><strong>Import Database</strong><a class="headerlink" href="#import-database" title="Permalink to this heading">#</a></h1>
+<p>Pada database yang digunakan terdapat 4 kolom :</p>
 <ol class="arabic simple">
-<li><p>BeautifulSoup = digunakan untuk melakukan crawling pada data berita</p></li>
-<li><p>snscrape = digunakan untuk crawling data pada twitter</p></li>
-<li><p>pandas</p></li>
-<li><p>CSV</p></li>
+<li><p>sepallength</p></li>
+<li><p>sepalwidth</p></li>
+<li><p>petallength</p></li>
+<li><p>petalwidth</p></li>
 </ol>
-<p>##<strong>Twitter</strong></p>
-<p>#Snscrape</p>
-<p>Snscrape adalah sebuah alat yang digunakan untuk melakukan crawling data dari media sosial Twitter. Snscrape memiliki kemampuan untuk mengambil data tweet, pengguna, hashtag, dan topik yang populer pada Twitter.</p>
+<p>Database:</p>
+<ol class="arabic simple">
+<li><p>PostgreSQL</p></li>
+<li><p>Elephant</p></li>
+<li><p>MySQL</p></li>
+<li><p>SQL Server</p></li>
+</ol>
+</div>
+<div class="section" id="akses-database">
+<h1><strong>Akses Database</strong><a class="headerlink" href="#akses-database" title="Permalink to this heading">#</a></h1>
+<p>Untuk mengakses semua database dapat menggunakan Ngrok. di ngrok di setting TCP port dari masing-masing database. Agar Ngrok bisa berjalan bersamaan, maka di ngrok.yml di tambahkan sebuah tunnel yang mewakili port database. Untuk codenya ada dibawah ini:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span> <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>snscrape
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">snscrape.modules.twitter</span> <span class="k">as</span> <span class="nn">sracp</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">topik</span> <span class="o">=</span> <span class="s2">&quot;cakimin&quot;</span>
-<span class="n">tweets</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">limit</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">sracp</span><span class="o">.</span><span class="n">TwitterSearchScraper</span><span class="p">(</span><span class="n">topik</span><span class="p">)</span><span class="o">.</span><span class="n">get_items</span><span class="p">():</span>
-  <span class="k">if</span> <span class="n">limit</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-    <span class="k">break</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">tweets</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">tweet</span><span class="o">.</span><span class="n">user</span><span class="p">,</span><span class="n">tweet</span><span class="o">.</span><span class="n">content</span><span class="p">,</span><span class="n">tweet</span><span class="o">.</span><span class="n">place</span><span class="p">])</span>
-    <span class="n">limit</span><span class="o">-=</span><span class="mi">1</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tweets</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Akun&quot;</span><span class="p">,</span><span class="s2">&quot;Tweet&quot;</span><span class="p">,</span><span class="s2">&quot;Lokasi&quot;</span><span class="p">])</span>
-<span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is formatted as code</span>
+<span class="n">tunnels</span><span class="p">:</span>
+  <span class="n">mysql</span><span class="p">:</span>
+    <span class="n">addr</span><span class="p">:</span> <span class="mi">3306</span>
+    <span class="n">proto</span><span class="p">:</span> <span class="n">tcp</span>
+  <span class="n">postgre</span><span class="p">:</span>
+    <span class="n">addr</span><span class="p">:</span> <span class="mi">5432</span>
+    <span class="n">proto</span><span class="p">:</span> <span class="n">tcp</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-3-275649913972&gt;:8: DeprecatedFeatureWarning: content is deprecated, use rawContent instead
-  tweets.append([tweet.user,tweet.content,tweet.place])
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">KeyboardInterrupt</span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-3-275649913972&gt;</span> in <span class="ni">&lt;cell line: 4&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">tweets</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">500</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">sracp</span><span class="o">.</span><span class="n">TwitterSearchScraper</span><span class="p">(</span><span class="n">topik</span><span class="p">)</span><span class="o">.</span><span class="n">get_items</span><span class="p">():</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>   <span class="k">if</span> <span class="n">limit</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="k">break</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/snscrape/modules/twitter.py</span> in <span class="ni">get_items</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1659</span>                 <span class="k">del</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;cursor&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1660</span> 
-<span class="ne">-&gt; </span><span class="mi">1661</span>                 <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter_api_data</span><span class="p">(</span><span class="s1">&#39;https://api.twitter.com/2/search/adaptive.json&#39;</span><span class="p">,</span> <span class="n">_TwitterAPIType</span><span class="o">.</span><span class="n">V2</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">paginationParams</span><span class="p">,</span> <span class="n">cursor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cursor</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1662</span>                         <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">_v2_timeline_instructions_to_tweets_or_users</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1663</span> 
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/snscrape/modules/twitter.py</span> in <span class="ni">_iter_api_data</span><span class="nt">(self, endpoint, apiType, params, paginationParams, cursor, direction)</span>
-<span class="g g-Whitespace">    </span><span class="mi">759</span>                 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">760</span>                         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Retrieving scroll page </span><span class="si">{</span><span class="n">cursor</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">761</span>                         <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_data</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">apiType</span><span class="p">,</span> <span class="n">reqParams</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">762</span>                         <span class="k">yield</span> <span class="n">obj</span>
-<span class="g g-Whitespace">    </span><span class="mi">763</span> 
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/snscrape/modules/twitter.py</span> in <span class="ni">_get_api_data</span><span class="nt">(self, endpoint, apiType, params)</span>
-<span class="g g-Whitespace">    </span><span class="mi">725</span>                 <span class="k">if</span> <span class="n">apiType</span> <span class="ow">is</span> <span class="n">_TwitterAPIType</span><span class="o">.</span><span class="n">GRAPHQL</span><span class="p">:</span>
-<span class="nn">    726                         params = urllib.parse.urlencode({k: json.dumps(v, separators = (&#39;,&#39;, &#39;:&#39;)) for k, v</span> in <span class="ni">params.items</span><span class="nt">()}, quote_via = urllib.parse.quote)</span>
-<span class="ne">--&gt; </span><span class="mi">727</span>                 <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">params</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apiHeaders</span><span class="p">,</span> <span class="n">responseOkCallback</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_api_response</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">728</span>                 <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">729</span>                         <span class="n">obj</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/snscrape/base.py</span> in <span class="ni">_get</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">249</span> 
-<span class="g g-Whitespace">    </span><span class="mi">250</span>         <span class="k">def</span> <span class="nf">_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">251</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">252</span> 
-<span class="g g-Whitespace">    </span><span class="mi">253</span>         <span class="k">def</span> <span class="nf">_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/snscrape/base.py</span> in <span class="ni">_request</span><span class="nt">(self, method, url, params, data, headers, timeout, responseOkCallback, allowRedirects, proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span>                                 <span class="n">_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;... with environmentSettings: </span><span class="si">{</span><span class="n">environmentSettings</span><span class="si">!r}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">202</span>                         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">203</span>                                 <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">allow_redirects</span> <span class="o">=</span> <span class="n">allowRedirects</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">environmentSettings</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">204</span>                         <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">205</span>                                 <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retries</span><span class="p">:</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/requests/sessions.py</span> in <span class="ni">send</span><span class="nt">(self, request, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">643</span> 
-<span class="g g-Whitespace">    </span><span class="mi">644</span>         <span class="c1"># Send the request</span>
-<span class="ne">--&gt; </span><span class="mi">645</span>         <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">646</span> 
-<span class="g g-Whitespace">    </span><span class="mi">647</span>         <span class="c1"># Total elapsed time of the request (approximately)</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/requests/adapters.py</span> in <span class="ni">send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">438</span>         <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">439</span>             <span class="k">if</span> <span class="ow">not</span> <span class="n">chunked</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">440</span>                 <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">441</span>                     <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">442</span>                     <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/urllib3/connectionpool.py</span> in <span class="ni">urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span> 
-<span class="g g-Whitespace">    </span><span class="mi">702</span>             <span class="c1"># Make the request on the httplib connection object.</span>
-<span class="ne">--&gt; </span><span class="mi">703</span>             <span class="n">httplib_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span>                 <span class="n">conn</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span>                 <span class="n">method</span><span class="p">,</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">447</span>                     <span class="c1"># Python 3 (including for exceptions like SystemExit).</span>
-<span class="g g-Whitespace">    </span><span class="mi">448</span>                     <span class="c1"># Otherwise it looks like a bug in the code.</span>
-<span class="ne">--&gt; </span><span class="mi">449</span>                     <span class="n">six</span><span class="o">.</span><span class="n">raise_from</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">450</span>         <span class="k">except</span> <span class="p">(</span><span class="n">SocketTimeout</span><span class="p">,</span> <span class="n">BaseSSLError</span><span class="p">,</span> <span class="n">SocketError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">451</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_raise_timeout</span><span class="p">(</span><span class="n">err</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout_value</span><span class="o">=</span><span class="n">read_timeout</span><span class="p">)</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/urllib3/packages/six.py</span> in <span class="ni">raise_from</span><span class="nt">(value, from_value)</span>
-
-<span class="nn">/usr/local/lib/python3.9/dist-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">442</span>                 <span class="c1"># Python 3</span>
-<span class="g g-Whitespace">    </span><span class="mi">443</span>                 <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">444</span>                     <span class="n">httplib_response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">445</span>                 <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">446</span>                     <span class="c1"># Remove the TypeError from the exception chain in</span>
-
-<span class="nn">/usr/lib/python3.9/http/client.py</span> in <span class="ni">getresponse</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1375</span>         <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1376</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1377</span>                 <span class="n">response</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1378</span>             <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1379</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="nn">/usr/lib/python3.9/http/client.py</span> in <span class="ni">begin</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span>         <span class="c1"># read until we get a non-100 response</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">320</span>             <span class="n">version</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_status</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span>             <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">CONTINUE</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span>                 <span class="k">break</span>
-
-<span class="nn">/usr/lib/python3.9/http/client.py</span> in <span class="ni">_read_status</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">279</span> 
-<span class="g g-Whitespace">    </span><span class="mi">280</span>     <span class="k">def</span> <span class="nf">_read_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">281</span>         <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="n">_MAXLINE</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">282</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">_MAXLINE</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span>             <span class="k">raise</span> <span class="n">LineTooLong</span><span class="p">(</span><span class="s2">&quot;status line&quot;</span><span class="p">)</span>
-
-<span class="nn">/usr/lib/python3.9/socket.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">702</span>         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">703</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">704</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span>             <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">706</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_occurred</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="nn">/usr/lib/python3.9/ssl.py</span> in <span class="ni">recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1240</span>                   <span class="s2">&quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
-<span class="g g-Whitespace">   </span><span class="mi">1241</span>                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1242</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1243</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1244</span>             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
-
-<span class="nn">/usr/lib/python3.9/ssl.py</span> in <span class="ni">read</span><span class="nt">(self, len, buffer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1098</span>         <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1099</span>             <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1100</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1101</span>             <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1102</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-1-919596054354&gt;&quot;</span><span class="gt">, line </span><span class="mi">2</span>
+    <span class="n">tunnels</span><span class="p">:</span>
+            <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;twitter_cakimin.csv&quot;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
+<p>lalu dapat mengakses database yang sesuai dengan TCP yang ada di dalam Ngrok. kemudian digantu untuk host dan portnya</p>
 </div>
-</div>
-</div>
-<p>#crawling dari <a class="reference external" href="http://pta.trunojoyo.ac.id">pta.trunojoyo.ac.id</a></p>
-<p>Crawling data web dengan Beautiful Soup adalah teknik untuk mengekstrak data dari halaman web dengan menggunakan library Python yang bernama Beautiful Soup. Beautiful Soup menyediakan cara yang mudah untuk menavigasi struktur HTML dan XML dari halaman web, sehingga memungkinkan kita untuk mengambil data yang kita butuhkan</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="o">=</span> <span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>bs4
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ScrapingPtaTrunojoyo</span><span class="p">:</span>
-  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
-  
-  <span class="k">def</span> <span class="nf">page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
-    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
-    <span class="n">contents</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ol&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;pagination&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">findChildren</span><span class="p">(</span><span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">contents</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-
-  <span class="k">def</span> <span class="nf">artikel_page</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">page</span><span class="p">):</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
-    <span class="n">contents</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;data-cat&#39;</span><span class="p">:</span><span class="s1">&#39;#luxury&#39;</span><span class="p">})</span>
-    <span class="k">return</span> <span class="n">contents</span>
-
-  <span class="k">def</span> <span class="nf">get_berita</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="n">pta_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">page</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">pg</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">page</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-      <span class="n">artikels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">artikel_page</span><span class="p">(</span><span class="n">pg</span><span class="p">)</span>
-      <span class="k">for</span> <span class="n">artikel</span> <span class="ow">in</span> <span class="n">artikels</span><span class="p">:</span>
-        <span class="n">respone</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">artikel</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;gray button&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>
-        <span class="n">soup_data</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">respone</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
-        <span class="n">cont</span> <span class="o">=</span> <span class="n">soup_data</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="s1">&#39;content_journal&#39;</span><span class="p">})</span>
-        <span class="c1"># ambil data</span>
-        <span class="n">nama</span> <span class="o">=</span> <span class="n">cont</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">div</span><span class="o">.</span><span class="n">span</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; : &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">judul</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">cont</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">string</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
-        <span class="n">abstrak</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">cont</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">string</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
-        <span class="n">pta_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s1">&#39;Penulis&#39;</span> <span class="p">:</span> <span class="n">nama</span><span class="p">,</span>
-            <span class="s1">&#39;Judul&#39;</span><span class="p">:</span> <span class="n">judul</span><span class="p">,</span>
-            <span class="s1">&#39;Abstrak&#39;</span><span class="p">:</span> <span class="n">abstrak</span>
-        <span class="p">})</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">pta</span> <span class="o">=</span> <span class="n">pta_list</span>
-  
-  <span class="k">def</span> <span class="nf">result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pta</span><span class="p">)</span>
-  
-  <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namefile</span><span class="o">=</span><span class="s1">&#39;pta&#39;</span><span class="p">):</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pta</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">namefile</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scPta</span> <span class="o">=</span> <span class="n">ScrapingPtaTrunojoyo</span><span class="p">(</span><span class="s1">&#39;https://pta.trunojoyo.ac.id/c_search/byprod/10/&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scPta</span><span class="o">.</span><span class="n">get_berita</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scPta</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-b9486280-52a4-40c9-a1ae-45fd27aed2be">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Penulis</th>
-      <th>Judul</th>
-      <th>Abstrak</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>A.Ubaidillah S.Kom</td>
-      <td>Perancangan dan implementasi sistem database t...</td>
-      <td>Sistem  informasi  akademik  (siakad) merupaka...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>M. Basith Ardianto,</td>
-      <td>Aplikasi kontrol dan monitoring jaringan kompu...</td>
-      <td>Berjalannya koneksi jaringan komputer dengan l...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Akhmad Suyandi, S.Kom</td>
-      <td>Rancang bangun aplikasi proxy server untukenkr...</td>
-      <td>Web server adalah sebuah perangkat lunak serve...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Heri Supriyanto</td>
-      <td>Sistem pendukung keputusan optimasi penjadwala...</td>
-      <td>Penjadwalan  kuliah  di  perguruan  tinggi  me...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Septian Rahman Hakim</td>
-      <td>Sistem augmented reality animasi benda bergera...</td>
-      <td>Seiring perkembangan teknologi yang ada diduni...</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Adi Chandra Laksono</td>
-      <td>Gerak pekerja pada game real time strategy men...</td>
-      <td>Gerak pekerja ada pada game yang memiliki genr...</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>NURRACHMAT</td>
-      <td>Rancang bangun game perawatan sapi karapan men...</td>
-      <td>Perkembangan game yang semakin pesat, memberik...</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Muhammad Choirur Rozi</td>
-      <td>Ekstraksi fitur berbasis two dimensional linea...</td>
-      <td>Sistem pengenalan wajah adalah suatu sistem un...</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>M Khoiril Anwar</td>
-      <td>Implementasi  algoritma prim  dan depth first ...</td>
-      <td>Teknologi mobile game beroperating system open...</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>MALIKUL HAMZAH</td>
-      <td>Perancangan sistem informasi badan kepegawaian...</td>
-      <td>Kantor badan kepegawaian kota bangkalan adalah...</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Norman</td>
-      <td>Pemanfaatan togaf adm untuk perancangan sistem...</td>
-      <td>Penyusunan sistem informasi dinas perindustria...</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Robiatul Adawiyah, S.Kom</td>
-      <td>Aplikasi metode fuzzy analytic network process...</td>
-      <td>Perusahaan pemerintah maupun swasta mempunyai ...</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Desy Mariana S. Kom</td>
-      <td>Sistem pendukung keputusan rekomendasi menu di...</td>
-      <td>Pelayanan makanan bagi pasien rawat inap di ru...</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Lia Fransiska</td>
-      <td>Rancang bangun aplikasi pemilihan teknik rekay...</td>
-      <td>Penyusunan sistem pendukung keputusan pemiliha...</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Erwina Safitri</td>
-      <td>Deteksi corepoint sidik jari menggunakan metod...</td>
-      <td>Sidik jari adalah salah satu karakteristik fis...</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-b9486280-52a4-40c9-a1ae-45fd27aed2be')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-        
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-      
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-b9486280-52a4-40c9-a1ae-45fd27aed2be button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-b9486280-52a4-40c9-a1ae-45fd27aed2be');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-  </div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scPta</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>#crawling data berita</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span> <span class="k">as</span> <span class="nn">req</span>
-<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> <span class="k">as</span> <span class="n">bs</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">hades</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user-agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36&#39;</span><span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">scrape_cnbc</span><span class="p">(</span><span class="n">hal</span><span class="p">):</span>
-    <span class="k">global</span> <span class="n">hades</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">hal</span><span class="p">):</span>
-        <span class="n">url_cnbc</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://www.cnbcindonesia.com/search?query=bangkrut&amp;kanal=&amp;tipe=&amp;date=&quot;</span>
-        <span class="n">ge</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_cnbc</span><span class="p">,</span><span class="n">hades</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-        <span class="n">sop</span> <span class="o">=</span> <span class="n">bs</span><span class="p">(</span><span class="n">ge</span><span class="p">,</span><span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
-        <span class="n">ul</span> <span class="o">=</span> <span class="n">sop</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;list media_rows middle thumb terbaru gtm_indeks_feed&#39;</span><span class="p">)</span>
-        <span class="n">li</span> <span class="o">=</span> <span class="n">ul</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">li</span><span class="p">:</span>
-            <span class="n">link_art</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>        
-            <span class="n">ge_</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">link_art</span><span class="p">,</span><span class="n">hades</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-            <span class="n">sop_</span> <span class="o">=</span> <span class="n">bs</span><span class="p">(</span><span class="n">ge_</span><span class="p">,</span><span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
-            <span class="n">art</span> <span class="o">=</span> <span class="n">sop_</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;lm_content mt10&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;article&#39;</span><span class="p">)</span>
-            <span class="n">headline</span> <span class="o">=</span> <span class="n">art</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-            <span class="n">warp</span> <span class="o">=</span> <span class="n">art</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span><span class="n">class_</span><span class="o">=</span><span class="s1">&#39;detail_text&#39;</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">warp</span><span class="p">:</span>
-                <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
-                <span class="n">y</span>  <span class="o">=</span> <span class="p">[</span><span class="n">y</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span> <span class="p">]</span>
-                <span class="n">content</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;ADVERTISEMENT&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;SCROLL TO RESUME CONTENT&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;done[</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">] &gt; </span><span class="si">{</span><span class="n">headline</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-                <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;beritaCNBC.csv&#39;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-                    <span class="n">wr</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-                    <span class="n">wr</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">headline</span><span class="p">,</span><span class="n">content</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scrape_cnbc</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>done[1] &gt; Taipan Rus
-done[2] &gt; Sudah Bang
-done[3] &gt; Pentingnya
-done[4] &gt; Negara Ban
-done[5] &gt; Bos LPS: D
-done[6] &gt; Bukan IMF,
-done[7] &gt; BEEF: Harg
-done[8] &gt; Pasien IMF
-done[9] &gt; Jack Ma Ma
-done[10] &gt; Divonis 15
-done[11] &gt; Ressa Herl
-done[12] &gt; Negara Ban
-done[13] &gt; Taipan Rus
-done[14] &gt; Sudah Bang
-done[15] &gt; Pentingnya
-done[16] &gt; Negara Ban
-done[17] &gt; Bos LPS: D
-done[18] &gt; Bukan IMF,
-done[19] &gt; BEEF: Harg
-done[20] &gt; Pasien IMF
-done[21] &gt; Jack Ma Ma
-done[22] &gt; Divonis 15
-done[23] &gt; Ressa Herl
-done[24] &gt; Negara Ban
-done[25] &gt; Taipan Rus
-done[26] &gt; Sudah Bang
-done[27] &gt; Pentingnya
-done[28] &gt; Negara Ban
-done[29] &gt; Bos LPS: D
-done[30] &gt; Bukan IMF,
-done[31] &gt; BEEF: Harg
-done[32] &gt; Pasien IMF
-done[33] &gt; Jack Ma Ma
-done[34] &gt; Divonis 15
-done[35] &gt; Ressa Herl
-done[36] &gt; Negara Ban
-done[37] &gt; Taipan Rus
-done[38] &gt; Sudah Bang
-done[39] &gt; Pentingnya
-done[40] &gt; Negara Ban
-done[41] &gt; Bos LPS: D
-done[42] &gt; Bukan IMF,
-done[43] &gt; BEEF: Harg
-done[44] &gt; Pasien IMF
-done[45] &gt; Jack Ma Ma
-done[46] &gt; Divonis 15
-done[47] &gt; Ressa Herl
-done[48] &gt; Negara Ban
-done[49] &gt; Taipan Rus
-done[50] &gt; Sudah Bang
-done[51] &gt; Pentingnya
-done[52] &gt; Negara Ban
-done[53] &gt; Bos LPS: D
-done[54] &gt; Bukan IMF,
-done[55] &gt; BEEF: Harg
-done[56] &gt; Pasien IMF
-done[57] &gt; Jack Ma Ma
-done[58] &gt; Divonis 15
-done[59] &gt; Ressa Herl
-done[60] &gt; Negara Ban
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/beritaCNBC.csv&#39;</span><span class="p">)</span>
-<span class="n">df</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-9204cc97-a796-4bdf-bf23-8f47adf5d7f3">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Surya Darmadi, Dulu Orang Terkaya RI, Kini Koruptor Terbesar</th>
-      <th>Jakarta, CNBC Indonesia - Majelis hakim Pengadilan Negeri (PN) Jakarta Pusat telah menjatuhkan vonis 15 tahun penjara kepada Bos Grup Duta Palma Surya Darmadi. Putusan ini mengakhiri kasus korupsi terbesar di Indonesia.Menteri Koordinator Bidang Politik, Hukum dan Keamanan (Menko Polhukam) Mahfud MD pun mengapresiasi pemecahan kasus ini. Mahfud menilai vonis 15 tahun penjara sangat setimpal dengan kasus korupsi yang dilakukan Surya Darmadi alias Apeng.Surya telah menjadi tersangka yang merugikan negara ratusan triliun rupiah. Yaitu penyerobotan lahan kelapa sawit dengan luas 37.095 hektar di Kabupaten Indragiri Hulu, Riau. Perusahaan perkebunan milik Surya, Grup Duta Palma menggarap lahan tersebut tanpa izin sepanjang 2003-2022.\r\r\r\rSiapakah sebenarnya Surya Darmadi, tersangka kasus korupsi yang rugikan negara ratusan triliun rupiah? Berikut profilnya dirangkum CNBC Indonesia.Pernah Jadi Orang TerkayaSebelumnya, Surya pernah menempati peringkat ke-28 orang terkaya ke-28 di Indonesia versi majalah Forbes pada tahun 2018. Kekayaannya pada saat itu mencapai Rp 20,73 triliun.Mirisnya, Surya Darmadi harus mendekam sementara di Rumah Tahanan (Rutan) Salemba selama 20 hari selama penyelidikan kasus dugaan korupsi penyerobotan lahan berlangsung.Sekarang, Surya telah terbukti menjadi koruptor terbesar di RI dan telah divonis 15 tahun penjara.Gurita BisnisMelansir Indonesiatatler.com, Surya Darmadi merupakan Founder dan Chairman Darmex Agro Group melalui anak perusahaan Dutapalma Nusantara. Merujuk laman Linkedin PT Darmex Agro disebutkan, perusahaan berdiri tahun 1987 melalui pembentukan unit bisnisnya PT Dutapalma Nusantara. Dan menjadi salah satu grup bisnis minyak sawit terbesar di Indonesia.Masih mengutip profil Linkedin, lahan perkebunan disebutkan berlokasi di Riau dan Kalimantan, dengan 8 pabrik kelapa sawit (PKS) di Pekanbaru, Jambi, dan Kalimantan. Dengan estimasi produksi minyak sawit mentah (crude palm oil/CPO) sekitar 36 ribu ton per bulan.Darmex Group dilaporkan berkantor pusat di Jakarta dengan 13 ribu lebih staf di Indonesia.Pada tahun 2008, perusahaan melakukan konsolidasi anak perusahaan untuk meningkatkan kepemilikan hingga 95%.Duta Palma Nusantara tercatat di Direktori Perusahaan Kementerian Perindustrian sebagai perusahaan beralamat di Riau, bergerak di bidang CPO dan kernel.Tak hanya itu, Darmex Group juga memiliki jaringan bisnis lain. Hanya saja, tak banyak informasi yang tersedia. Bahkan, situs perusahaan, Darmex Agro pun kini tak bisa lagi diakses.Hasil penelusuran, situs sgu.ac.id menyebutkan, Darmex Agro, salah satu grup usaha bidang kelapa sawit di Indonesia. Memiliki 2 anak perusahaan, yaitu Darmex Biofuels dan Darmex Oil &amp; Fats.Kedua perusahaan tersebut juga terdaftar di direktori Kementerian Perindustrian (Kemenperin).Darmex Oil &amp; Fats sendiri terdaftar di cekbpom.pom.go.id sebagai pendaftar atas minyak goreng (migor) sawit merek, Palma. Dengan ukuran jeriken plastik 5 dan 18 liter, juga stand pouch 1 dan 2 liter.Perusahaan juga mendaftarkan minyak goreng sawit merek Minyakita, namun masa berlakunya hanya sampai 17 Mei 2022.Terlibat dalam Penyelewengan Alih Fungsi HutanSurya pernah berhadapan dengan hukum ketika KPK memproses kasus dugaan suap terkait pengajuan revisi alih fungsi hutan di Riau pada 2014. Kasus ini merupakan pengembangan dari perkara yang menjerat eks Gubernur Riau Annas Maamun dan kawan-kawan.Hasil penyidikan mengungkapkan Surya menyuap mantan Gubernur Riau, Annas Maamun, sebesar Rp 3 miliar melalui Gulat Medali Emas Manurung. Surya menyuap Annas untuk mengubah lokasi perkebunan milik PT Duta Palma menjadi bukan kawasan hutan.Ia sempat menjadi buron dan lolos dari proses hukum selama 8 tahun. Karena pada tahun 2014, ia melarikan diri ke luar negeri.</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Bea Cukai Serahkan Pejabat Hedon Eko Darmanto ...</td>
-      <td>Jakarta, CNBC Indonesia - Eko Darmanto, Kepala...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Jempol! Ini Cara Sri Mulyani Cs Singkirkan Pej...</td>
-      <td>Jakarta, CNBC Indonesia - Tampaknya Menteri Ke...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>KPK Endus Ada Geng 'Tajir' di Ditjen Pajak, Ke...</td>
-      <td>Jakarta, CNBC Indonesia - Komisi Pemberantasan...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Pejabat Bea Cukai Eko Darmanto Dicopot, Ini Ha...</td>
-      <td>Jakarta, CNBC Indonesia - Direktorat Jenderal ...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Bea Cukai Resmi Copot Eko Darmanto dari Jabata...</td>
-      <td>Jakarta, CNBC Indonesia - Direktorat Jenderal ...</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>114</th>
-      <td>Pasien IMF 23 Kali, Negara Ini Darurat Bangkrut</td>
-      <td>Jakarta, CNBC Indonesia - Krisis ekonomi yang ...</td>
-    </tr>
-    <tr>
-      <th>115</th>
-      <td>Jack Ma Makin Miskin! Hartanya Nguap Rp 47 T, ...</td>
-      <td>Jakarta, CNBC Indonesia - Miliarder asal China...</td>
-    </tr>
-    <tr>
-      <th>116</th>
-      <td>Divonis 15 Tahun Penjara, Surya Darmadi Langsu...</td>
-      <td>Jakarta, CNBC Indonesia - Surya Darmadi, terda...</td>
-    </tr>
-    <tr>
-      <th>117</th>
-      <td>Ressa Herlambang Dipolisikan, Bukti Pentingnya...</td>
-      <td>Jakarta, CNBC Indonesia - Usai dikabarkan bang...</td>
-    </tr>
-    <tr>
-      <th>118</th>
-      <td>Negara Bangkrut Ini Dapat 'Durian Runtuh' Rp 6...</td>
-      <td>Jakarta, CNBC Indonesia - Sri Lanka yang masih...</td>
-    </tr>
-  </tbody>
-</table>
-<p>119 rows × 2 columns</p>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-9204cc97-a796-4bdf-bf23-8f47adf5d7f3')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-        
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M0 0h24v24H0V0z" fill="none"/>
-    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
-  </svg>
-      </button>
-      
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-      <script>
-        const buttonEl =
-          document.querySelector('#df-9204cc97-a796-4bdf-bf23-8f47adf5d7f3 button.colab-df-convert');
-        buttonEl.style.display =
-          google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-        async function convertToInteractive(key) {
-          const element = document.querySelector('#df-9204cc97-a796-4bdf-bf23-8f47adf5d7f3');
-          const dataTable =
-            await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                     [key], {});
-          if (!dataTable) return;
-
-          const docLinkHtml = 'Like what you see? Visit the ' +
-            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-            + ' to learn more about interactive tables.';
-          element.innerHTML = '';
-          dataTable['output_type'] = 'display_data';
-          await google.colab.output.renderOutput(dataTable, element);
-          const docLink = document.createElement('div');
-          docLink.innerHTML = docLinkHtml;
-          element.appendChild(docLink);
-        }
-      </script>
-    </div>
-  </div>
-  </div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&quot;output.xlsx&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
+<div class="section" id="get-data-dari-database">
+<h1>Get data dari Database<a class="headerlink" href="#get-data-dari-database" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>PostgreSQL
+Untuk mengakses database PostgreSQL local menggunakan Ngrok yang kemudian melakukan perintah dengan query untuk mendapatkan kolom yang ada didatabase PostgreSQL.Kolom yang diambil merupakan kolom sepallength dari tabel iris. library yang digunakan untuk mengakses database ini yaitu import psycopg2.</p></li>
+<li><p>Elephant
+Untuk mengakses database Elephant yang ada di postgreSQL, menggunakan library import psycopg2. kemudian didalam library tersebut ada parameter yang harus dimasukkan. data yang diambil dari kolom sepal_w dari tabel iris.</p></li>
+<li><p>MySQL
+Untuk mengakses database MySQL menggunakan library mysql-connector. agar bisa diakses publik, dapat menggunakan ngrok. didalam parameter mysql.connector disetting host dan port sesuai ngrok yang disediakan. data yang diambil dari kolom petallength dari tabel iris.</p></li>
+<li><p>CSV
+Karena SQL Server tidak dapat diakses oleh orchest, maka diganti dengan data CSV dengan kolom petalwidth dan class. untuk mengakses data CSV tersebut menggunakan library pandas.</p></li>
+</ol>
 </div>
 
     <script type="text/x-thebe-config">
@@ -1170,22 +461,13 @@ done[60] &gt; Negara Ban
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="markdown.html"
+       href="tugas%201.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Markdown Files</p>
+        <p class="prev-next-title">CRAWLING DATA</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="markdown-notebooks.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Notebooks with MyST Markdown</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   
@@ -1204,7 +486,10 @@ done[60] &gt; Negara Ban
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Import Database</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-database"><strong>Akses Database</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#get-data-dari-database">Get data dari Database</a></li>
 </ul>
 
   </nav></div>

@@ -1,15 +1,4 @@
 Traceback (most recent call last):
-  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 730, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-  File "/usr/local/lib/python3.9/dist-packages/nbclient/util.py", line 96, in ensure_async
-    result = await obj
-  File "/usr/local/lib/python3.9/dist-packages/jupyter_client/asynchronous/channels.py", line 48, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
   File "/usr/local/lib/python3.9/dist-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 1204, in execute
@@ -22,18 +11,26 @@ Traceback (most recent call last):
     return future.result()
   File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 663, in async_execute
     await self.async_execute_cell(
-  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 949, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 754, in _async_poll_for_reply
-    await self._async_handle_timeout(timeout, cell)
-  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 801, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-['topik = "cakimin"', 'tweets = []', 'limit = 500', 'for tweet in sracp.TwitterSearchScraper(topik).get_items():', '  if limit==0:']
-...
-['  else:', '    tweets.append([tweet.user,tweet.content,tweet.place])', '    limit-=1', 'df = pd.DataFrame(tweets, columns=["Akun","Tweet","Lokasi"])', 'df']
--------------------
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.9/dist-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# This is formatted as code
+tunnels:
+  mysql:
+    addr: 3306
+    proto: tcp
+  postgre:
+    addr: 5432
+    proto: tcp
+------------------
+
+[0;36m  File [0;32m"<ipython-input-1-919596054354>"[0;36m, line [0;32m2[0m
+[0;31m    tunnels:[0m
+[0m            ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+
+SyntaxError: invalid syntax (<ipython-input-1-919596054354>, line 2)
 
