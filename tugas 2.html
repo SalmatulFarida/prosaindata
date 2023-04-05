@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Import Database &#8212; My sample book</title>
+    <title>PIPELINES &#8212; My sample book</title>
   
   
   
@@ -159,9 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tugas%201.html">CRAWLING DATA</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Import Database</strong></a></li>
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">PIPELINES</a></li>
 </ul>
 
     </div>
@@ -332,9 +330,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -345,22 +341,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Import Database</h1>
+    <h1>PIPELINES</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Import Database</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-database"><strong>Akses Database</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#get-data-dari-database">Get data dari Database</a></li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -370,9 +355,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p><strong># PIPELINES</strong></p>
-<div class="section" id="import-database">
-<h1><strong>Import Database</strong><a class="headerlink" href="#import-database" title="Permalink to this heading">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="pipelines">
+<h1>PIPELINES<a class="headerlink" href="#pipelines" title="Permalink to this heading">#</a></h1>
+<p><strong>Import Database</strong></p>
 <p>Pada database yang digunakan terdapat 4 kolom :</p>
 <ol class="arabic simple">
 <li><p>sepallength</p></li>
@@ -387,9 +372,7 @@ document.write(`
 <li><p>MySQL</p></li>
 <li><p>SQL Server</p></li>
 </ol>
-</div>
-<div class="section" id="akses-database">
-<h1><strong>Akses Database</strong><a class="headerlink" href="#akses-database" title="Permalink to this heading">#</a></h1>
+<p><strong>Akses Database</strong></p>
 <p>Untuk mengakses semua database dapat menggunakan Ngrok. di ngrok di setting TCP port dari masing-masing database. Agar Ngrok bisa berjalan bersamaan, maka di ngrok.yml di tambahkan sebuah tunnel yang mewakili port database. Untuk codenya ada dibawah ini:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -414,9 +397,7 @@ document.write(`
 </div>
 </div>
 <p>lalu dapat mengakses database yang sesuai dengan TCP yang ada di dalam Ngrok. kemudian digantu untuk host dan portnya</p>
-</div>
-<div class="section" id="get-data-dari-database">
-<h1>Get data dari Database<a class="headerlink" href="#get-data-dari-database" title="Permalink to this heading">#</a></h1>
+<p>** Get data dari Database**</p>
 <ol class="arabic simple">
 <li><p>PostgreSQL
 Untuk mengakses database PostgreSQL local menggunakan Ngrok yang kemudian melakukan perintah dengan query untuk mendapatkan kolom yang ada didatabase PostgreSQL.Kolom yang diambil merupakan kolom sepallength dari tabel iris. library yang digunakan untuk mengakses database ini yaitu import psycopg2.</p></li>
@@ -478,23 +459,6 @@ Karena SQL Server tidak dapat diakses oleh orchest, maka diganti dengan data CSV
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Import Database</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-database"><strong>Akses Database</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#get-data-dari-database">Get data dari Database</a></li>
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
