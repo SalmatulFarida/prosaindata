@@ -32,8 +32,6 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['topik = "cakimin"', 'tweets = []', 'limit = 500', 'for tweet in sracp.TwitterSearchScraper(topik).get_items():', '  if limit==0:']
-...
-['  else:', '    tweets.append([tweet.user,tweet.content,tweet.place])', '    limit-=1', 'df = pd.DataFrame(tweets, columns=["Akun","Tweet","Lokasi"])', 'df']
+scrape_cnbc(6)
 -------------------
 
