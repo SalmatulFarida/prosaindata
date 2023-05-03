@@ -16,32 +16,17 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 # reading a file and 
-# printing the size of the file
+# printing the si
+ze of the file
 document = readDoc()
 print('The length of the file is:', end=' ')
 print(len(document))
 ------------------
 
------ stdout -----
-You have asked for the document t.txt
-1
-------------------
 
-[0;31m[0m
-[0;31mFileNotFoundError[0mTraceback (most recent call last)
-[0;32m<ipython-input-5-3d2a36d056b4>[0m in [0;36m<cell line: 3>[0;34m()[0m
-[1;32m      1[0m [0;31m# reading a file and[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      2[0m [0;31m# printing the size of the file[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 3[0;31m [0mdocument[0m [0;34m=[0m [0mreadDoc[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      4[0m [0mprint[0m[0;34m([0m[0;34m'The length of the file is:'[0m[0;34m,[0m [0mend[0m[0;34m=[0m[0;34m' '[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0mprint[0m[0;34m([0m[0mlen[0m[0;34m([0m[0mdocument[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;36m  File [0;32m"<ipython-input-9-dc575fd2b94e>"[0;36m, line [0;32m3[0m
+[0;31m    ze of the file[0m
+[0m       ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
 
-[0;32m<ipython-input-3-cfcaf3f58ca9>[0m in [0;36mreadDoc[0;34m()[0m
-[1;32m     16[0m [0;34m[0m[0m
-[1;32m     17[0m     [0;32mif[0m [0mchoice[0m [0;34m==[0m [0;36m1[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 18[0;31m         [0mf[0m [0;34m=[0m [0mopen[0m[0;34m([0m[0;34m'/content/drive/MyDrive/prosaindata/DataCrawling/'[0m[0;34m+[0m[0mname[0m[0;34m,[0m [0;34m'r'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m     19[0m         [0mdocument[0m [0;34m=[0m [0mf[0m[0;34m.[0m[0mread[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     20[0m         [0mf[0m[0;34m.[0m[0mclose[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/content/drive/MyDrive/prosaindata/DataCrawling/t.txt'
 

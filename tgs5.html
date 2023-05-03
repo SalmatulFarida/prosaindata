@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Extractive Summarizer &#8212; SALMATUL FARIDA</title>
+    <title>PageRank NetworkX &#8212; SALMATUL FARIDA</title>
   
   
   
@@ -342,7 +342,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Extractive Summarizer</h1>
+    <h1>PageRank NetworkX</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -352,18 +352,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-summarization">Text Summarization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-libraries">Importing libraries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-untuk-membaca-dokumen-dari-users">Function Untuk Membaca Dokumen dari Users</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-untuk-tokenisasi-dokumen-users">Function Untuk Tokenisasi Dokumen Users</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-penginputan-dokumen">Proses Penginputan Dokumen</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-mengubah-dokumen-menjadi-list">Proses Mengubah Dokumen Menjadi List</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-term-document-matrix-td-matrix">Proses term-document matrix (TD matrix)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-penggambaran-graph-menggunakan-networkx">Proses Penggambaran graph menggunakan Networkx</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-dari-setiap-kalimat">Menghitung PageRank dari setiap Kalimat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-kalimat-yang-penting-dan-menyatukannya">Mencari Kalimat yang penting dan Menyatukannya</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-penulisan-dokumen-ke-file-baru">Proses Penulisan Dokumen ke file baru</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>PageRank NetworkX</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-github"><strong>Implementasi GITHUB</strong></a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -374,84 +366,120 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="extractive-summarizer">
-<h1><strong>Extractive Summarizer</strong><a class="headerlink" href="#extractive-summarizer" title="Permalink to this heading">#</a></h1>
-<div class="section" id="text-summarization">
-<h2>Text Summarization<a class="headerlink" href="#text-summarization" title="Permalink to this heading">#</a></h2>
-<p>Peringkasan teks ekstraktif adalah tentang menemukan kalimat yang lebih penting dari suatu dokumen sebagai ringkasan dari dokumen itu. Pendekatan kami menggunakan algoritma TextRank untuk menemukan kalimat <code class="docutils literal notranslate"><span class="pre">'penting'</span></code> ini.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="pagerank-networkx">
+<h1><strong>PageRank NetworkX</strong><a class="headerlink" href="#pagerank-networkx" title="Permalink to this heading">#</a></h1>
+<p>Pagerank adalah algoritma yang digunakan dalam analisis jaringan dan pengurutan halaman web. Algoritma Pagerank mengukur kepentingan relatif dari setiap halaman web dalam suatu jaringan dengan menganalisis jumlah dan kualitas tautan masuk ke halaman tersebut dari halaman web lain dalam jaringan.</p>
+<ol class="arabic simple">
+<li><p>Buat graph berarah dengan networkx(minimal 9 node)</p></li>
+</ol>
+<ul>
+<li><p>Langkahnya sebagai berikut :</p>
+<p>Import library networkx</p>
+<p>Buat struktur grafik kosong. Digraph untuk graph berarah dan Graph untuk graph tidak berarah</p>
+<p>Mendeklarasikan node yang saling terhubung sesuai yang dibuat</p>
+<p>menampilkan graph beserta nama nodenya masing-masing</p>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+</pre></div>
 </div>
-<div class="section" id="importing-libraries">
-<h2>Importing libraries<a class="headerlink" href="#importing-libraries" title="Permalink to this heading">#</a></h2>
-<p>Import Libary yang akan dipakai untuk Proses <code class="docutils literal notranslate"><span class="pre">Text</span> <span class="pre">Summarization</span></code></p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">=</span><span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span> <span class="c1">#Fungsi Digraph adalah fungsi untuk membuat graph yang berarah</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">),(</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">),(</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">),(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="p">),(</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2f325414305a7585ed46c1d42b2812dc7d35f2c887f3769ebc80b4cb1b8cb12a.png" src="_images/2f325414305a7585ed46c1d42b2812dc7d35f2c887f3769ebc80b4cb1b8cb12a.png" />
+</div>
+</div>
+<p>Hitung manual pagerank dari graph yang DIbuat</p>
+<p>Rumus pagerank sebagai berikut :</p>
+<p><img alt="download.png" src="data:image/png;base64,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" /></p>
+<p>Ket :</p>
+<p>d = Faktor lompatan (default untuk networkx adalah 0,85)</p>
+<p>N = Jumlah banyaknya node</p>
+<p>PR(B) = Nilai pagerank yang terhubung dalam PR(A)</p>
+<p>L(B) = jumlah line yang keluar dari PR(B)</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="implementasi-github">
+<h1><strong>Implementasi GITHUB</strong><a class="headerlink" href="#implementasi-github" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>PyPDF2
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>docx2txt
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-Collecting PyPDF2
-  Downloading pypdf2-3.0.1-py3-none-any.whl (232 kB)
-?25l     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/232.6 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">232.6/232.6 kB</span> <span class=" -Color -Color-Red">18.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: PyPDF2
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed PyPDF2-3.0.1
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting docx2txt
-  Downloading docx2txt-0.8.tar.gz (2.8 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Preparing metadata (setup.py) ... ?25l?25hdone
-Building wheels for collected packages: docx2txt
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Building wheel for docx2txt (setup.py) ... ?25l?25hdone
-  Created wheel for docx2txt: filename=docx2txt-0.8-py3-none-any.whl size=3977 sha256=e505b63c5acff80e766ceb3e8b1ab895189c97a723c0b8e761398e180c6a7dbc
-  Stored in directory: /root/.cache/pip/wheels/22/58/cf/093d0a6c3ecfdfc5f6ddd5524043b88e59a9a199cb02352966
-Successfully built docx2txt
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: docx2txt
-Successfully installed docx2txt-0.8
+Requirement already satisfied: PyPDF2 in /usr/local/lib/python3.10/dist-packages (3.0.1)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>docx2txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Requirement already satisfied: docx2txt in /usr/local/lib/python3.10/dist-packages (0.8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Library numpy membantu bekerja dengan array: pembuatan dan manipulasi array</span>
+<span class="c1"># Implementasi ini menggunakan array untuk menyimpan matriks yang dihasilkan sebagai array 2-D</span>
+<span class="c1"># PyPDF2 adalah library yang digunakan untuk membaca file PDF</span>
+<span class="c1"># docx2txt adalah library yang digunakan untuk membaca dokumen Word</span>
+<span class="c1"># sys library digunakan untuk mencetak ukuran struktur data yang digunakan dalam program</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">PyPDF2</span>
 <span class="kn">import</span> <span class="nn">docx2txt</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1"># perpustakaan networkx membantu dalam bekerja dengan grafik ...</span>
+<span class="c1"># dan kemudian melakukan algoritma PageRank ...</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+
+<span class="c1"># matplotlib adalah library yang digunakan untuk memvisualisasikan data dengan menggambar grafik input matriks</span>
+<span class="c1"># %matplotlib inline adalah perintah yang digunakan untuk menampilkan grafik di notebook jupyter</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline 
+
+<span class="c1"># PunktSentenceTokenizer digunakan untuk melakukan tokenisasi kalimat</span>
 <span class="kn">from</span> <span class="nn">nltk.tokenize.punkt</span> <span class="kn">import</span> <span class="n">PunktSentenceTokenizer</span>
+
+<span class="c1"># TfidfTransformer, CountVectorizer digunakan untuk menentukan TF-IDF</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfTransformer</span><span class="p">,</span> <span class="n">CountVectorizer</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="function-untuk-membaca-dokumen-dari-users">
-<h2>Function Untuk Membaca Dokumen dari Users<a class="headerlink" href="#function-untuk-membaca-dokumen-dari-users" title="Permalink to this heading">#</a></h2>
-<p>Function dibawah untuk membaca berbagai macam format dokumen dari mulai <code class="docutils literal notranslate"><span class="pre">txt</span></code> dan <code class="docutils literal notranslate"><span class="pre">pdf</span></code>. Karena dengan format yang berbeda maka libary yang dipakai untuk membaca document tersebut juga berbeda.</p>
+<p>Berfungsi untuk membaca dokumen dari user
+Format yang didukung: .txt, .pdf</p>
+<p>Input: Mengambil nama file sebagai input.</p>
+<p>Keluaran: Mengembalikan keluaran string yang berisi konten file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">readDoc</span><span class="p">():</span>
-    <span class="c1"># name = input(&#39;Please input a file name: &#39;) </span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;t.txt&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Please input a file name: &#39;</span><span class="p">)</span> 
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;You have asked for the document </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
 
     <span class="c1"># now read the type of document</span>
@@ -466,13 +494,13 @@ Successfully installed docx2txt-0.8
     <span class="c1"># Case 1: if it is a .txt file</span>
         
     <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/prosaindata/DataCrawling/&#39;</span><span class="o">+</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
         <span class="n">document</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
             
     <span class="c1"># Case 2: if it is a .pdf file</span>
     <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">pdfFileObj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/prosaindata/DataCrawling/&#39;</span><span class="o">+</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+        <span class="n">pdfFileObj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
         <span class="n">pdfReader</span> <span class="o">=</span> <span class="n">PyPDF2</span><span class="o">.</span><span class="n">PdfFileReader</span><span class="p">(</span><span class="n">pdfFileObj</span><span class="p">)</span>
         <span class="n">pageObj</span> <span class="o">=</span> <span class="n">pdfReader</span><span class="o">.</span><span class="n">getPage</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">document</span> <span class="o">=</span> <span class="n">pageObj</span><span class="o">.</span><span class="n">extractText</span><span class="p">()</span>
@@ -484,22 +512,20 @@ Successfully installed docx2txt-0.8
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Returning an empty string&#39;</span><span class="p">)</span>
         <span class="n">document</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     
-    <span class="c1"># print(type(document))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">document</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">document</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="function-untuk-tokenisasi-dokumen-users">
-<h2>Function Untuk Tokenisasi Dokumen Users<a class="headerlink" href="#function-untuk-tokenisasi-dokumen-users" title="Permalink to this heading">#</a></h2>
-<p>Proses Tokenisasi bertujuan untuk menjadikan dokumen dengan berbagai format diatas menjadi <code class="docutils literal notranslate"><span class="pre">list</span></code></p>
-<p>Tokenisasi isi dokumen berdasarkan <code class="docutils literal notranslate"><span class="pre">kalimat</span></code></p>
+<p>Berfungsi untuk membuat token pada dokumen
+Input: String dokumen teks</p>
+<p>Keluaran: Daftar yang berisi kalimat sebagai elemennya</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">document</span><span class="p">):</span>
-    <span class="c1"># Tokenisasi menggunakan libary  PunktSentenceTokenizer</span>
-    <span class="c1"># yang dipanggil sebagai  sentence_tokenizer</span>
+    <span class="c1"># We are tokenizing using the PunktSentenceTokenizer</span>
+    <span class="c1"># we call an instance of this class as sentence_tokenizer</span>
     <span class="n">doc_tokenizer</span> <span class="o">=</span> <span class="n">PunktSentenceTokenizer</span><span class="p">()</span>
     
     <span class="c1"># tokenize() method: takes our document as input and returns a list of all the sentences in the document</span>
@@ -511,14 +537,12 @@ Successfully installed docx2txt-0.8
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="proses-penginputan-dokumen">
-<h2>Proses Penginputan Dokumen<a class="headerlink" href="#proses-penginputan-dokumen" title="Permalink to this heading">#</a></h2>
-<p>Pada proses dibawah ada penginputan dokumen dari user</p>
+<p>Baca Dokumen</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># reading a file and </span>
-<span class="c1"># printing the size of the file</span>
+<span class="c1"># printing the si</span>
+<span class="n">ze</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span>
 <span class="n">document</span> <span class="o">=</span> <span class="n">readDoc</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The length of the file is:&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">document</span><span class="p">))</span>
@@ -526,42 +550,31 @@ Successfully installed docx2txt-0.8
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>You have asked for the document t.txt
-1
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">FileNotFoundError</span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-5-3d2a36d056b4&gt;</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># reading a file and</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># printing the size of the file</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">document</span> <span class="o">=</span> <span class="n">readDoc</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The length of the file is:&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">document</span><span class="p">))</span>
-
-<span class="nn">&lt;ipython-input-3-cfcaf3f58ca9&gt;</span> in <span class="ni">readDoc</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> 
-<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">18</span>         <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/prosaindata/DataCrawling/&#39;</span><span class="o">+</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>         <span class="n">document</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span>         <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;/content/drive/MyDrive/prosaindata/DataCrawling/t.txt&#39;
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-9-dc575fd2b94e&gt;&quot;</span><span class="gt">, line </span><span class="mi">3</span>
+    <span class="n">ze</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span>
+       <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="proses-mengubah-dokumen-menjadi-list">
-<h2>Proses Mengubah Dokumen Menjadi List<a class="headerlink" href="#proses-mengubah-dokumen-menjadi-list" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we want to tokenize the document for further processing</span>
-<span class="c1"># tokenizing the sentence means that we are creating a list of all the sentences of the document.</span>
-<span class="c1"># Need of tokenizing the document: Initially the document is in just a string format.</span>
-<span class="c1"># if we want to process the document, we need to store it in a data structure.</span>
-<span class="c1"># Tokenization of document into words is also possible, but we will go with the tokenizing with the sentences</span>
-<span class="c1"># Since we want to choose the most relevant sentences, we need to generate tokens of sentences only</span>
-<span class="n">sentences_list</span> <span class="o">=</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mounted at /content/drive
+</pre></div>
+</div>
+</div>
+</div>
+<p>Hasil daftar kalimat dalam dokumen</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentences_list</span> <span class="o">=</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
 
 <span class="c1"># let us print the size of memory used by the list sentences</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The size of the list in Bytes is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">)))</span>
@@ -573,26 +586,411 @@ Successfully installed docx2txt-0.8
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The size of the list in Bytes is: 864
-The size of the item 0 in Bytes is: 146
+The size of the item 0 in Bytes is: 147
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="proses-term-document-matrix-td-matrix">
-<h2>Proses term-document matrix (TD matrix)<a class="headerlink" href="#proses-term-document-matrix-td-matrix" title="Permalink to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">CountVectorizer()</span></code> Menghasilkan matrix dimana matrix itu berasal dari kata-kata pada dokumen.</p>
-<p>Misalkan:
-<code class="docutils literal notranslate"><span class="pre">'hari</span> <span class="pre">ini</span> <span class="pre">cerah</span> <span class="pre">setelah</span> <span class="pre">kemarin</span> <span class="pre">mendung',</span> <span class="pre">'jakarta</span> <span class="pre">hari</span> <span class="pre">kemarin</span> <span class="pre">mendung'</span></code></p>
-<p>Maka : <code class="docutils literal notranslate"><span class="pre">['cerah',</span> <span class="pre">'hari',</span> <span class="pre">'ini',</span> <span class="pre">'jakarta',</span> <span class="pre">'kemarin',</span> <span class="pre">'mendung',</span> <span class="pre">'setelah']</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert a collection of text documents to a matrix of token counts</span>
-<span class="c1"># fit_transform method of CountVectorizer() class </span>
-<span class="c1"># Learn the vocabulary dictionary and return term-document matrix. </span>
-<span class="c1"># I/p: An iterable which yields either str, unicode or file objects.</span>
-<span class="c1"># O/p: The term-document matrix named cv_matrix</span>
-<span class="n">cv</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The size of the list &quot;sentences&quot; is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The size of the list &quot;sentences&quot; is: 101
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sentences_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> In Banaras District there is a village called Bira in which an old, childless
+widow used to live.
+She was a Gond woman named Bhungi and she didn&#39;t
+own either a scrap of land or a house to live in.
+Her only source of livelihood
+was a parching oven.
+The village folk customarily have one meal a day of
+parched grains, so there was always a crowd around Bhungi&#39;s oven.
+Whatever grain she was paid for parching she would grind or fry and eat it.
+She slept in a corner of the same little shack that sheltered the oven.
+As soon
+as it was light she&#39;d get up and go out to gather dry leaves from all around to
+make her fire.
+She would stack the leaves right next to the oven, and after
+twelve, light the fire.
+But on the days when she had to parch grain for Pandit
+Udaybhan Pandey, the owner of the village, she went to bed hungry.
+She
+was obliged to work without pay for Pandit Udaybhan Pandey She also had
+to fetch water for his house.
+And, for this reason, from time to time the oven
+was not lit.
+She lived in the Pandit&#39;s village, therefore he had full authority to
+make her do any sort of odd job.
+In his opinion if she received food for
+working from him, how could it be considered as work done without pay?
+He was doing her a favour, in fact, by letting her live in the village at all.
+It was spring, a day on which the fresh grain was fried and eaten and given
+as a gift.
+No fire was lit in the houses Bhungi&#39;s oven was being put to good
+use today.
+There was a crowd worthy of a village fair around her.
+She had
+scarcely opportunity to draw a breath.
+Because of the customer&#39;s impatience,
+squabbles kept breaking out.
+Then two servants arrived, each carrying a
+heaped basket of grain from Pandit Udaybhan with the order to parch it right
+away.
+When Bhungi saw the two baskets she was alarmed.
+It was already
+after twelve and even by sunset, she would not have time to parch so much
+grain.
+Now she would have to stay at the oven parching until after dark for
+no payment.
+In despair she took the two baskets.
+One of the flunkeys said
+menacingly, &#39;Don&#39;t waste any time or you&#39;ll be sorry.&#39;
+With this command the servants went away and Bhungi began to parch the
+grain.
+It&#39;s no laughing matter to parch a whole maund of grain.
+She had to
+keep stopping from the parching in order to keep the oven fire going.
+So by
+sundown not even half the work was done.
+She was afraid Panditji&#39;s men
+would be coming.
+She began to move her hands all the more frantically.
+Soon the servants returned and said, &#39;Well, is the grain parched?&#39;
+Feeling bold, Bhungi said, &#39;Can&#39;t you see?
+I&#39;m parching it now.&#39;
+&#39;The whole day&#39;s gone and you haven&#39;t finished any more grain than this!
+Have you been roasting it or spoiling it?
+This is completely uncooked!
+How&#39;s it going to be used for food?
+It&#39;s the ruin of us!
+You’ll see what
+Panditji does to you for this.&#39;
+The result was that that night the oven was dug up and Bhungi was left
+without a means of livelihood.
+Bhungi now had no means of support.
+The villagers suffered a good deal
+too from the destruction of the oven.
+In many houses even at noon, cooked
+cereal was no longer available.
+People went to Panditji and asked him to
+give the order for the old woman&#39;s oven to be rebuilt and the fire once more
+lighted, but he paid no attention to them.
+He could not suffer a loss of face.
+A few people who wished her well urged her to move to another village.
+But
+her heart would not accept this suggestion.
+She had spent her fifty miserable
+years in this village and she loved every leaf on every tree.
+Here she had
+known the sorrows and pleasures of life; she could not give it up now in the
+last days.
+The very idea of moving distressed her.
+Sorrow in this village was
+preferable to happiness in another.
+A month went by.
+Very early one morning Pandit Udaybhan, taking his
+little band of servants with him, went out to collect his rents.
+Now when he
+looked toward the old woman&#39;s oven he fell into a violent rage: it was being
+made again.
+Bhungi was energetically rebuilding it with balls of clay Most
+likely she&#39;d spent the night at this work and wanted to finish it before the sun
+was high.
+She knew that she was going against the Pandit&#39;s wishes, but she
+hoped that he had forgotten his anger by then.
+But alas, the poor creature had
+gown old without growing wise.
+Suddenly Panditji shouted, &#39;By whose order?&#39;
+Bewildered, Bhungi saw that he was standing before her.
+He demanded once again, &#39;By whose order are you building it?&#39;
+In a flight
+she said, &#39;Everybody said I should build it and so I&#39;m building it.&#39;
+&#39;I&#39;ll have it smashed again.
+&#39;With this he kicked the oven.
+The wet clay
+collapsed in a heap.
+He kicked at the trough again but she ran in front of it
+and took the kick in her side.
+Rubbing her ribs she said, &#39;Maharaj, you&#39;re not
+afraid of anybody but you ought to fear God.
+What good does it do you to
+ruin me like this!
+Do you think gold is going to grow out of this small piece
+of land!
+For your own good, I&#39;m telling you, don&#39;t torment poor people, don&#39;t
+be the death of me.
+&#39;You&#39;re not going to build any oven here again.
+&#39;If I don&#39;t how am I going to be able to eat!&#39;
+&#39;I&#39;m not responsible for your belly.&#39;
+&#39;But if I do nothing except chores for you where will I go for food!&#39;
+&#39;If you’re going to stay in the village you&#39;ll have to do my chores.
+&#39;I&#39;ll do them when I&#39;ve built my over?.
+I can&#39;t do your work just for the
+sake of staying in the village.
+&#39;Then don&#39;t, just get out of the village.
+&#39;How can I!
+I&#39;ve grown old in this hut.
+My in-laws and their grandparents
+lived in this same hut.
+Except for Yama, king of death, nobody&#39;s going to
+force me out of it now.
+&#39;Excellent, now you&#39;re quoting Scripture!&#39;
+Pandit Udaybhan said.
+&#39;lf you&#39;d
+worked hard I might have let you stay, but after this I won&#39;t rest until I&#39;ve
+had you thrown out.
+‘To his attendants he said, &#39;Go get a pile of leaves right
+away and set fire to the whole thing; we&#39;ll show her how to make an oven.
+In a moment there was a tremendous racket.
+The names leapt towards the
+sky, the blaze spread wildly in all directions till the villagers came clustering 
+around this mountain of fire.
+Hopelessly, Bhungi stood by her oven
+watching the conflagration.
+Suddenly, with a violent dash, she hurled herself
+into the names.
+They came running from everywhere but no one had the
+courage to go into the mouth of the blaze.
+In a matter of seconds her
+withered body was completely consumed.
+At that moment the wind rose with a gust.
+The liberated flames began to
+race toward the east.
+There were some peasants&#39; huts near the oven which
+were engulfed by the fierce flames.
+Fed in this way, the blaze spread even
+further.
+Panditji&#39;s barn was in its path and it pounced upon it.
+By now the
+whole village was in a panic.
+They began to band together to put out the fire
+but the sprinkle of water acted like oil on it and the flames kept mounting
+higher.
+Pandit Udaybhan&#39;s splendid mansion was swallowed up; while he
+watched, it tossed like a ship amid wild waves and disappeared in the sea of
+fire.
+The sound of lamentation that broke out amidst the ashes was even
+more pitiful than Bhungi&#39;s grievous cries.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;list&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sentences_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> In Banaras District there is a village called Bira in which an old, childless
+widow used to live.
+She was a Gond woman named Bhungi and she didn&#39;t
+own either a scrap of land or a house to live in.
+Her only source of livelihood
+was a parching oven.
+The village folk customarily have one meal a day of
+parched grains, so there was always a crowd around Bhungi&#39;s oven.
+Whatever grain she was paid for parching she would grind or fry and eat it.
+She slept in a corner of the same little shack that sheltered the oven.
+As soon
+as it was light she&#39;d get up and go out to gather dry leaves from all around to
+make her fire.
+She would stack the leaves right next to the oven, and after
+twelve, light the fire.
+But on the days when she had to parch grain for Pandit
+Udaybhan Pandey, the owner of the village, she went to bed hungry.
+She
+was obliged to work without pay for Pandit Udaybhan Pandey She also had
+to fetch water for his house.
+And, for this reason, from time to time the oven
+was not lit.
+She lived in the Pandit&#39;s village, therefore he had full authority to
+make her do any sort of odd job.
+In his opinion if she received food for
+working from him, how could it be considered as work done without pay?
+He was doing her a favour, in fact, by letting her live in the village at all.
+It was spring, a day on which the fresh grain was fried and eaten and given
+as a gift.
+No fire was lit in the houses Bhungi&#39;s oven was being put to good
+use today.
+There was a crowd worthy of a village fair around her.
+She had
+scarcely opportunity to draw a breath.
+Because of the customer&#39;s impatience,
+squabbles kept breaking out.
+Then two servants arrived, each carrying a
+heaped basket of grain from Pandit Udaybhan with the order to parch it right
+away.
+When Bhungi saw the two baskets she was alarmed.
+It was already
+after twelve and even by sunset, she would not have time to parch so much
+grain.
+Now she would have to stay at the oven parching until after dark for
+no payment.
+In despair she took the two baskets.
+One of the flunkeys said
+menacingly, &#39;Don&#39;t waste any time or you&#39;ll be sorry.&#39;
+With this command the servants went away and Bhungi began to parch the
+grain.
+It&#39;s no laughing matter to parch a whole maund of grain.
+She had to
+keep stopping from the parching in order to keep the oven fire going.
+So by
+sundown not even half the work was done.
+She was afraid Panditji&#39;s men
+would be coming.
+She began to move her hands all the more frantically.
+Soon the servants returned and said, &#39;Well, is the grain parched?&#39;
+Feeling bold, Bhungi said, &#39;Can&#39;t you see?
+I&#39;m parching it now.&#39;
+&#39;The whole day&#39;s gone and you haven&#39;t finished any more grain than this!
+Have you been roasting it or spoiling it?
+This is completely uncooked!
+How&#39;s it going to be used for food?
+It&#39;s the ruin of us!
+You’ll see what
+Panditji does to you for this.&#39;
+The result was that that night the oven was dug up and Bhungi was left
+without a means of livelihood.
+Bhungi now had no means of support.
+The villagers suffered a good deal
+too from the destruction of the oven.
+In many houses even at noon, cooked
+cereal was no longer available.
+People went to Panditji and asked him to
+give the order for the old woman&#39;s oven to be rebuilt and the fire once more
+lighted, but he paid no attention to them.
+He could not suffer a loss of face.
+A few people who wished her well urged her to move to another village.
+But
+her heart would not accept this suggestion.
+She had spent her fifty miserable
+years in this village and she loved every leaf on every tree.
+Here she had
+known the sorrows and pleasures of life; she could not give it up now in the
+last days.
+The very idea of moving distressed her.
+Sorrow in this village was
+preferable to happiness in another.
+A month went by.
+Very early one morning Pandit Udaybhan, taking his
+little band of servants with him, went out to collect his rents.
+Now when he
+looked toward the old woman&#39;s oven he fell into a violent rage: it was being
+made again.
+Bhungi was energetically rebuilding it with balls of clay Most
+likely she&#39;d spent the night at this work and wanted to finish it before the sun
+was high.
+She knew that she was going against the Pandit&#39;s wishes, but she
+hoped that he had forgotten his anger by then.
+But alas, the poor creature had
+gown old without growing wise.
+Suddenly Panditji shouted, &#39;By whose order?&#39;
+Bewildered, Bhungi saw that he was standing before her.
+He demanded once again, &#39;By whose order are you building it?&#39;
+In a flight
+she said, &#39;Everybody said I should build it and so I&#39;m building it.&#39;
+&#39;I&#39;ll have it smashed again.
+&#39;With this he kicked the oven.
+The wet clay
+collapsed in a heap.
+He kicked at the trough again but she ran in front of it
+and took the kick in her side.
+Rubbing her ribs she said, &#39;Maharaj, you&#39;re not
+afraid of anybody but you ought to fear God.
+What good does it do you to
+ruin me like this!
+Do you think gold is going to grow out of this small piece
+of land!
+For your own good, I&#39;m telling you, don&#39;t torment poor people, don&#39;t
+be the death of me.
+&#39;You&#39;re not going to build any oven here again.
+&#39;If I don&#39;t how am I going to be able to eat!&#39;
+&#39;I&#39;m not responsible for your belly.&#39;
+&#39;But if I do nothing except chores for you where will I go for food!&#39;
+&#39;If you’re going to stay in the village you&#39;ll have to do my chores.
+&#39;I&#39;ll do them when I&#39;ve built my over?.
+I can&#39;t do your work just for the
+sake of staying in the village.
+&#39;Then don&#39;t, just get out of the village.
+&#39;How can I!
+I&#39;ve grown old in this hut.
+My in-laws and their grandparents
+lived in this same hut.
+Except for Yama, king of death, nobody&#39;s going to
+force me out of it now.
+&#39;Excellent, now you&#39;re quoting Scripture!&#39;
+Pandit Udaybhan said.
+&#39;lf you&#39;d
+worked hard I might have let you stay, but after this I won&#39;t rest until I&#39;ve
+had you thrown out.
+‘To his attendants he said, &#39;Go get a pile of leaves right
+away and set fire to the whole thing; we&#39;ll show her how to make an oven.
+In a moment there was a tremendous racket.
+The names leapt towards the
+sky, the blaze spread wildly in all directions till the villagers came clustering 
+around this mountain of fire.
+Hopelessly, Bhungi stood by her oven
+watching the conflagration.
+Suddenly, with a violent dash, she hurled herself
+into the names.
+They came running from everywhere but no one had the
+courage to go into the mouth of the blaze.
+In a matter of seconds her
+withered body was completely consumed.
+At that moment the wind rose with a gust.
+The liberated flames began to
+race toward the east.
+There were some peasants&#39; huts near the oven which
+were engulfed by the fierce flames.
+Fed in this way, the blaze spread even
+further.
+Panditji&#39;s barn was in its path and it pounced upon it.
+By now the
+whole village was in a panic.
+They began to band together to put out the fire
+but the sprinkle of water acted like oil on it and the flames kept mounting
+higher.
+Pandit Udaybhan&#39;s splendid mansion was swallowed up; while he
+watched, it tossed like a ship amid wild waves and disappeared in the sea of
+fire.
+The sound of lamentation that broke out amidst the ashes was even
+more pitiful than Bhungi&#39;s grievous cries.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Menghasilkan term-document matrix (TD matrix) dari data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
 <span class="n">cv_matrix</span> <span class="o">=</span> <span class="n">cv</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -600,11 +998,30 @@ The size of the item 0 in Bytes is: 146
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># printing the cv_matrix type</span>
-<span class="c1"># and how it is being stored in memory?</span>
-<span class="c1"># it is stored in the compressed row format</span>
-<span class="c1"># compressed row format: </span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The data type of bow matrix </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">cv_matrix</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cv_demo</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
+<span class="n">text_demo</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ashish is good, you are bad&quot;</span><span class="p">,</span> <span class="s2">&quot;I am not bad&quot;</span><span class="p">]</span> 
+<span class="n">res_demo</span> <span class="o">=</span> <span class="n">cv_demo</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">text_demo</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result demo array is </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res_demo</span><span class="o">.</span><span class="n">toarray</span><span class="p">()))</span>
+
+<span class="c1"># Result is 2-d matrix containing document text matrix</span>
+<span class="c1"># Notice that in the second row, there is 2.</span>
+<span class="c1"># also, bad is repeated twice in that sentence.</span>
+<span class="c1"># so we can infer that 2 is corresponding to the word &#39;bad&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Feature list: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cv_demo</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result demo array is [[0 1 1 1 1 1 0 1]
+ [1 0 0 1 0 0 1 0]]
+Feature list: [&#39;am&#39; &#39;are&#39; &#39;ashish&#39; &#39;bad&#39; &#39;good&#39; &#39;is&#39; &#39;not&#39; &#39;you&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The data type of bow matrix </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">cv_matrix</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape of the matrix </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cv_matrix</span><span class="o">.</span><span class="n">get_shape</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Size of the matrix is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">cv_matrix</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">cv</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">())</span>
@@ -687,15 +1104,9 @@ Size of the matrix is: 48
 </div>
 </div>
 </div>
-<p>Lalu dihitung TF-IDF dengan TfidfTransformer</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tnormalized: document-term matrix normalized (value 0-1) according to the TF-IDF</span>
-<span class="c1"># TF(Term Frequency): the no. of times a term(a word here) appears in the current document(single sentence here)</span>
-<span class="c1"># IDF(Inverse Document Frequency): the no. of times a term(a word here) appears in the entire corpus</span>
-<span class="c1"># Corpus: set of all sentences</span>
-
-<span class="n">normal_matrix</span> <span class="o">=</span> <span class="n">TfidfTransformer</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">cv_matrix</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normal_matrix</span> <span class="o">=</span> <span class="n">TfidfTransformer</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">cv_matrix</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">normal_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -714,24 +1125,21 @@ Size of the matrix is: 48
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_graph</span> <span class="o">=</span> <span class="n">normal_matrix</span> <span class="o">*</span> <span class="n">normal_matrix</span><span class="o">.</span><span class="n">T</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">normal_matrix</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">toarray</span><span class="p">)</span>
+<span class="n">res_graph</span> <span class="o">=</span> <span class="n">normal_matrix</span> <span class="o">*</span> <span class="n">normal_matrix</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bound method _cs_matrix.toarray of &lt;492x101 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
+	with 1223 stored elements in Compressed Sparse Column format&gt;&gt;
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="proses-penggambaran-graph-menggunakan-networkx">
-<h2>Proses Penggambaran graph menggunakan Networkx<a class="headerlink" href="#proses-penggambaran-graph-menggunakan-networkx" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># drawing a graph to proceed for the textrank algorithm</span>
-<span class="c1"># nx_graph is a graph developed using the networkx library</span>
-<span class="c1"># each node represents a sentence</span>
-<span class="c1"># an edge represents that they have words in common</span>
-<span class="c1"># the edge weight is the number of words that are common in both of the sentences(nodes)</span>
-<span class="c1"># nx.draw() method is used to draw the graph created</span>
-
-<span class="n">nx_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_scipy_sparse_array</span><span class="p">(</span><span class="n">res_graph</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">from_scipy_sparse_array</span><span class="p">(</span><span class="n">res_graph</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_circular</span><span class="p">(</span><span class="n">nx_graph</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of edges </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nx_graph</span><span class="o">.</span><span class="n">number_of_edges</span><span class="p">()))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of vertices </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nx_graph</span><span class="o">.</span><span class="n">number_of_nodes</span><span class="p">()))</span>
@@ -751,178 +1159,142 @@ Number of vertices 101
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="menghitung-pagerank-dari-setiap-kalimat">
-<h2>Menghitung PageRank dari setiap Kalimat<a class="headerlink" href="#menghitung-pagerank-dari-setiap-kalimat" title="Permalink to this heading">#</a></h2>
+<p>Mendapatkan peringkat setiap kalimat menggunakan textrank</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ranks</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">nx_graph</span><span class="p">)</span>
 
 <span class="c1"># analyse the data type of ranks</span>
-<span class="c1"># print(type(ranks))</span>
-<span class="c1"># print(&#39;The size used by the dictionary in Bytes is: {}&#39;.format(sys.getsizeof(ranks)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ranks</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The size used by the dictionary in Bytes is: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">ranks</span><span class="p">)))</span>
 
 <span class="c1"># print the dictionary</span>
-<span class="c1"># for i in ranks:</span>
-<span class="c1">#     print(i, ranks[i])</span>
-<span class="c1"># print Urutan</span>
-<span class="nb">sorted</span><span class="p">(</span><span class="n">ranks</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="n">ranks</span><span class="o">.</span><span class="n">get</span> <span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ranks</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">ranks</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[8,
- 44,
- 74,
- 65,
- 27,
- 55,
- 25,
- 49,
- 85,
- 97,
- 7,
- 76,
- 40,
- 10,
- 21,
- 22,
- 11,
- 13,
- 98,
- 15,
- 56,
- 6,
- 9,
- 90,
- 5,
- 63,
- 4,
- 39,
- 1,
- 19,
- 51,
- 66,
- 87,
- 37,
- 81,
- 67,
- 54,
- 70,
- 42,
- 68,
- 3,
- 61,
- 38,
- 20,
- 30,
- 12,
- 99,
- 31,
- 24,
- 14,
- 77,
- 100,
- 26,
- 34,
- 69,
- 28,
- 96,
- 2,
- 23,
- 48,
- 88,
- 16,
- 71,
- 60,
- 84,
- 93,
- 41,
- 33,
- 59,
- 91,
- 0,
- 46,
- 53,
- 95,
- 35,
- 80,
- 29,
- 50,
- 73,
- 47,
- 32,
- 79,
- 94,
- 62,
- 86,
- 89,
- 92,
- 17,
- 64,
- 43,
- 57,
- 45,
- 18,
- 83,
- 82,
- 58,
- 72,
- 36,
- 75,
- 52,
- 78]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;dict&#39;&gt;
+The size used by the dictionary in Bytes is: 4696
+0 0.008473050396994235
+1 0.011136728928068603
+2 0.009383758113199747
+3 0.010305311473077004
+4 0.011387878003998006
+5 0.011453806553948459
+6 0.011956616615231173
+7 0.013007582297781907
+8 0.01646287839865644
+9 0.011870375394732305
+10 0.012805637163062402
+11 0.012625721662310345
+12 0.010081809427917856
+13 0.012615817098175835
+14 0.009951004198363802
+15 0.012312866898217463
+16 0.00905563154351586
+17 0.007114339155021146
+18 0.0067471140170273294
+19 0.01107854731351773
+20 0.010166769608001893
+21 0.012780859072392963
+22 0.012641302785309182
+23 0.009348558444248853
+24 0.010022831759849004
+25 0.013720926664709483
+26 0.00967523353291061
+27 0.013901992235429548
+28 0.009475796944343159
+29 0.008121737705990758
+30 0.010128784557098498
+31 0.010061180193377258
+32 0.007628895359126891
+33 0.008648669935446914
+34 0.009607446148227936
+35 0.008321167851894651
+36 0.005865449854506728
+37 0.010850655936218322
+38 0.01016989679015465
+39 0.011316273575827006
+40 0.012806608183832108
+41 0.008721584132312048
+42 0.010471498183578098
+43 0.0069310162410310865
+44 0.015471208931766298
+45 0.006769574754561524
+46 0.00847046871802134
+47 0.007920488123990665
+48 0.009307304242218498
+49 0.013422349587962496
+50 0.00800377307176715
+51 0.010972977593541676
+52 0.005638736527026145
+53 0.008382997267176076
+54 0.010529607891291103
+55 0.01388066751249088
+56 0.012126702206111421
+57 0.006784615529807721
+58 0.006089601429223819
+59 0.008586642640796938
+60 0.008907144628014934
+61 0.010300210131439285
+62 0.007498144929122573
+63 0.011431342109109786
+64 0.0070336084718421255
+65 0.014620307759349064
+66 0.010952275488776595
+67 0.010544285648427243
+68 0.010429795820400786
+69 0.0095418617321447
+70 0.010525969363956913
+71 0.008928640660743125
+72 0.006048548423719141
+73 0.00797891836019073
+74 0.014936237724528284
+75 0.0057851131761969855
+76 0.01283079486351997
+77 0.009853549019121232
+78 0.005429708840559132
+79 0.00761018082820169
+80 0.008306177787750085
+81 0.01057520034676566
+82 0.006302922702336774
+83 0.006533326937930438
+84 0.008770716307206536
+85 0.013144181304936983
+86 0.007410276777927928
+87 0.010919714810479554
+88 0.009071467904553753
+89 0.007324323114289139
+90 0.011678174623675307
+91 0.008559039093945649
+92 0.007144824222961522
+93 0.008754682443611118
+94 0.007575234843209658
+95 0.008323733804457837
+96 0.009463817503427964
+97 0.013055845277031975
+98 0.012555442089009524
+99 0.01007944190625105
+100 0.009695491842487962
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="mencari-kalimat-yang-penting-dan-menyatukannya">
-<h2>Mencari Kalimat yang penting dan Menyatukannya<a class="headerlink" href="#mencari-kalimat-yang-penting-dan-menyatukannya" title="Permalink to this heading">#</a></h2>
-<p>Proses Penyatuan Kalimat bisa disebut peringkasan</p>
+<p>Menemukan kalimat-kalimat penting dan membuat ringkasan</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># enumerate method: returns an enumerate object</span>
-<span class="c1"># Use of list Comprehensions</span>
-<span class="c1"># O/p: sentence_array is the sorted(descending order w.r.t. score value) 2-d array of ranks[sentence] and sentence </span>
-<span class="c1"># For example, if there are two sentences: S1 (with a score of S1 = s1) and S2 with score s2, with s2&gt;s1</span>
-<span class="c1"># then sentence_array is [[s2, S2], [s1, S1]]</span>
-<span class="n">sentence_array</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(((</span><span class="n">ranks</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">)),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentence_array</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(((</span><span class="n">ranks</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sentences_list</span><span class="p">)),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">sentence_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">)</span>
-<span class="n">sentence_array</span><span class="p">[:</span><span class="mi">7</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&#39;0.01646287839865644&#39;,
-        &#39;But on the days when she had to parch grain for Pandit\nUdaybhan Pandey, the owner of the village, she went to bed hungry.&#39;],
-       [&#39;0.015471208931766298&#39;,
-        &quot;People went to Panditji and asked him to\ngive the order for the old woman&#39;s oven to be rebuilt and the fire once more\nlighted, but he paid no attention to them.&quot;],
-       [&#39;0.014936237724528284&#39;,
-        &quot;&#39;If you’re going to stay in the village you&#39;ll have to do my chores.&quot;],
-       [&#39;0.014620307759349064&#39;,
-        &#39;He kicked at the trough again but she ran in front of it\nand took the kick in her side.&#39;],
-       [&#39;0.013901992235429548&#39;,
-        &#39;She had to\nkeep stopping from the parching in order to keep the oven fire going.&#39;],
-       [&#39;0.01388066751249088&#39;,
-        &quot;Bhungi was energetically rebuilding it with balls of clay Most\nlikely she&#39;d spent the night at this work and wanted to finish it before the sun\nwas high.&quot;],
-       [&#39;0.013720926664709483&#39;,
-        &#39;With this command the servants went away and Bhungi began to parch the\ngrain.&#39;]],
-      dtype=&#39;&lt;U160&#39;)
 </pre></div>
 </div>
 </div>
 </div>
-<p>Mencari rank dengan nilai <code class="docutils literal notranslate"><span class="pre">tertinggi</span></code> dan <code class="docutils literal notranslate"><span class="pre">terendah</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># as sentence_array is in descending order wrt score value</span>
-<span class="c1"># fmax is the largest score value(the score of first element)</span>
-<span class="c1"># fmin is the smallest score value(the score of last element)</span>
-
-<span class="n">rank_max</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rank_max</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">rank_min</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-<span class="c1"># print the largest and smallest value of scores of the sentence</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">rank_max</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">rank_min</span><span class="p">)</span>
 </pre></div>
@@ -935,16 +1307,9 @@ Number of vertices 101
 </div>
 </div>
 </div>
-<p>Proses Peringkasan dokument</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalization of the scores</span>
-<span class="c1"># so that it comes out in the range 0-1</span>
-<span class="c1"># fmax becomes 1</span>
-<span class="c1"># fmin becomes 0</span>
-<span class="c1"># store the normalized values in the list temp_array</span>
-
-<span class="n">temp_array</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp_array</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># if all sentences have equal ranks, means they are all the same</span>
 <span class="c1"># taking any sentence will give the summary, say the first sentence</span>
@@ -968,77 +1333,40 @@ Number of vertices 101
 </div>
 </div>
 </div>
-<p>Menghitung <code class="docutils literal notranslate"><span class="pre">threshold</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculation of threshold:</span>
-<span class="c1"># We take the mean value of normalized scores</span>
-<span class="c1"># any sentence with the normalized score 0.2 more than the mean value is considered to be </span>
-<span class="n">threshold</span> <span class="o">=</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">temp_array</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_array</span><span class="p">))</span> <span class="o">+</span> <span class="mf">0.2</span>
-<span class="n">threshold</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6052580933254368
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">temp_array</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_array</span><span class="p">))</span> <span class="o">+</span> <span class="mf">0.2</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Proses Pemisahan kalimat yang memenuhi threshold</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Separate out the sentences that satiasfy the criteria of having a score above the threshold</span>
-<span class="n">sentence_list</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sentence_list</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_array</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_array</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">temp_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
                 <span class="n">sentence_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">sentence_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentence_array</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-  
-<span class="n">model</span> <span class="o">=</span> <span class="n">sentence_list</span>
-<span class="c1"># Hasil Ringkasan </span>
-<span class="n">model</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;But on the days when she had to parch grain for Pandit\nUdaybhan Pandey, the owner of the village, she went to bed hungry.&#39;,
- &quot;People went to Panditji and asked him to\ngive the order for the old woman&#39;s oven to be rebuilt and the fire once more\nlighted, but he paid no attention to them.&quot;,
- &quot;&#39;If you’re going to stay in the village you&#39;ll have to do my chores.&quot;,
- &#39;He kicked at the trough again but she ran in front of it\nand took the kick in her side.&#39;,
- &#39;She had to\nkeep stopping from the parching in order to keep the oven fire going.&#39;,
- &quot;Bhungi was energetically rebuilding it with balls of clay Most\nlikely she&#39;d spent the night at this work and wanted to finish it before the sun\nwas high.&quot;,
- &#39;With this command the servants went away and Bhungi began to parch the\ngrain.&#39;,
- &#39;Here she had\nknown the sorrows and pleasures of life; she could not give it up now in the\nlast days.&#39;,
- &quot;‘To his attendants he said, &#39;Go get a pile of leaves right\naway and set fire to the whole thing; we&#39;ll show her how to make an oven.&quot;,
- &#39;By now the\nwhole village was in a panic.&#39;,
- &#39;She would stack the leaves right next to the oven, and after\ntwelve, light the fire.&#39;,
- &quot;I can&#39;t do your work just for the\nsake of staying in the village.&quot;,
- &#39;The result was that that night the oven was dug up and Bhungi was left\nwithout a means of livelihood.&#39;,
- &#39;And, for this reason, from time to time the oven\nwas not lit.&#39;,
- &#39;It was already\nafter twelve and even by sunset, she would not have time to parch so much\ngrain.&#39;,
- &#39;Now she would have to stay at the oven parching until after dark for\nno payment.&#39;,
- &quot;She lived in the Pandit&#39;s village, therefore he had full authority to\nmake her do any sort of odd job.&quot;,
- &#39;He was doing her a favour, in fact, by letting her live in the village at all.&#39;,
- &#39;They began to band together to put out the fire\nbut the sprinkle of water acted like oil on it and the flames kept mounting\nhigher.&#39;,
- &quot;No fire was lit in the houses Bhungi&#39;s oven was being put to good\nuse today.&quot;,
- &quot;She knew that she was going against the Pandit&#39;s wishes, but she\nhoped that he had forgotten his anger by then.&quot;]
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="proses-penulisan-dokumen-ke-file-baru">
-<h2>Proses Penulisan Dokumen ke file baru<a class="headerlink" href="#proses-penulisan-dokumen-ke-file-baru" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(sentence_list)</span>
-<span class="n">summary</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sentence_list</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">sentence_list</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Menulis ringkasan ke file baru</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sentence_list</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
 <span class="c1"># save the data in another file, names sum.txt</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/prosaindata/DataCrawling/doc.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a+&#39;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;final3.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a+&#39;</span><span class="p">)</span>
 <span class="c1">#print(type(f))</span>
 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
@@ -1077,6 +1405,103 @@ hoped that he had forgotten his anger by then.
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function TextIOWrapper.close()&gt;
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">lines</span> <span class="ow">in</span> <span class="n">sentence_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>But on the days when she had to parch grain for Pandit
+Udaybhan Pandey, the owner of the village, she went to bed hungry.
+People went to Panditji and asked him to
+give the order for the old woman&#39;s oven to be rebuilt and the fire once more
+lighted, but he paid no attention to them.
+&#39;If you’re going to stay in the village you&#39;ll have to do my chores.
+He kicked at the trough again but she ran in front of it
+and took the kick in her side.
+She had to
+keep stopping from the parching in order to keep the oven fire going.
+Bhungi was energetically rebuilding it with balls of clay Most
+likely she&#39;d spent the night at this work and wanted to finish it before the sun
+was high.
+With this command the servants went away and Bhungi began to parch the
+grain.
+Here she had
+known the sorrows and pleasures of life; she could not give it up now in the
+last days.
+‘To his attendants he said, &#39;Go get a pile of leaves right
+away and set fire to the whole thing; we&#39;ll show her how to make an oven.
+By now the
+whole village was in a panic.
+She would stack the leaves right next to the oven, and after
+twelve, light the fire.
+I can&#39;t do your work just for the
+sake of staying in the village.
+The result was that that night the oven was dug up and Bhungi was left
+without a means of livelihood.
+And, for this reason, from time to time the oven
+was not lit.
+It was already
+after twelve and even by sunset, she would not have time to parch so much
+grain.
+Now she would have to stay at the oven parching until after dark for
+no payment.
+She lived in the Pandit&#39;s village, therefore he had full authority to
+make her do any sort of odd job.
+He was doing her a favour, in fact, by letting her live in the village at all.
+They began to band together to put out the fire
+but the sprinkle of water acted like oil on it and the flames kept mounting
+higher.
+No fire was lit in the houses Bhungi&#39;s oven was being put to good
+use today.
+She knew that she was going against the Pandit&#39;s wishes, but she
+hoped that he had forgotten his anger by then.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Langkah untuk menentukan pagerank :</p>
+<ol class="arabic simple">
+<li><p>Iterasi 0 : inisialisasi semua peringkat menjadi 1/(jumlah node)</p></li>
+<li><p>Iterasi 1 : melakukan perhitungan sesuai dengan rumus yaitu melakukan perhitungan (1-damping factor)/(jumlah banyaknya node). kemudian ditambah dengan damping factor * (jumlahkan setiap nodes PR, dimana PR(B) terhubung dengan nodes PR(A)/jumlah line yang keluar dari nodes PR(B))</p></li>
+<li><p>Kemudian lakukan perhitungan pada langkah ke 2 pada iterasi selanjutnya.</p></li>
+</ol>
+<p>Manual</p>
+<p>Hitung menggunakan pagerank menggunakan networkx</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="n">net</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{1: 0.18504557325711096,
+ 2: 0.09531171077499326,
+ 3: 0.09531171077499326,
+ 4: 0.057173806009011584,
+ 6: 0.1980944205123369,
+ 5: 0.09768094535135649,
+ 9: 0.057173806009011584,
+ 8: 0.10677947899694076,
+ 7: 0.1074285483142452}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span> <span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">net</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6, 1, 7, 8, 5, 2, 3, 4, 9]
+</pre></div>
 </div>
 </div>
 </div>
@@ -1131,18 +1556,10 @@ hoped that he had forgotten his anger by then.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-summarization">Text Summarization</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-libraries">Importing libraries</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-untuk-membaca-dokumen-dari-users">Function Untuk Membaca Dokumen dari Users</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function-untuk-tokenisasi-dokumen-users">Function Untuk Tokenisasi Dokumen Users</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-penginputan-dokumen">Proses Penginputan Dokumen</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-mengubah-dokumen-menjadi-list">Proses Mengubah Dokumen Menjadi List</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-term-document-matrix-td-matrix">Proses term-document matrix (TD matrix)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-penggambaran-graph-menggunakan-networkx">Proses Penggambaran graph menggunakan Networkx</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-pagerank-dari-setiap-kalimat">Menghitung PageRank dari setiap Kalimat</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-kalimat-yang-penting-dan-menyatukannya">Mencari Kalimat yang penting dan Menyatukannya</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-penulisan-dokumen-ke-file-baru">Proses Penulisan Dokumen ke file baru</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>PageRank NetworkX</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-github"><strong>Implementasi GITHUB</strong></a></li>
 </ul>
+
   </nav></div>
 
 </div></div>
